@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<!-- above names the document as HTML -->
+<html>
+<!-- this is the documentElement -->
+<head>
+    <meta charset="utf-8" />
+
+    <title>PFilmF</title>
+    <script type="text/javascript">
+
+        // window.addEventListener("", function () { });
+        window.addEventListener("load", function () {
+            let first_name = document.getElementById("first_name");
+            first_name.value = "Mike";
+            last_name.value = "Santacruz";
+
+            // console.log(first_name.tagName)
+            // console.log(document.body.nodeType)
+            let my_div = document.getElementById("my_div");
+
+            my_div.style.border = "solid 2px red";
+            let my_tag = document.createElement("div")
+
+            my_div.appendChild(my_tag)
+            my_tag.innerHTML = "Good Morning"
+            my_div.addEventListener("mouseenter", function () {
+                my_div.style.backgroundColor = "yellow"
+                my_div.style.color = "black"
+            }, false);
+            my_div.addEventListener("mouseleave", function () {
+                my_div.style.backgroundColor = "blue"
+                my_div.style.color = "white"
+            }, false);
+
+            let rad = document.getElementById("my_div")
+                my_div.style.boarderRadius = "25px"
+            //document.getElementById("myDIV").style.borderRadius = "25px";
+            let my_hash = {
+                "INPUT": function () {
+                    console.log("hello")
+                }
+            }
+
+          
+
+            let my_handler = function (node) {
+                // console.log(node.tagName);
+                //  console.log(node.nodeType);
+                const name = node.tagName
+
+                if (false) { 
+                if (name == "INPUT") {
+
+                    console.log("INPUT found")
+                }
+                else if (name == "DIV") {
+                    console.log("DIV found")
+                }
+                else {
+                    console.log("Elements not found")
+                }
+
+                switch (name) {
+                    case "INPUT":
+                        {
+                            console.log("INPUT");
+                            break;
+                        }
+                    case "TABLE":
+                        {
+                            console.log("TABLE FOUND");
+                            break;
+                        }
+
+                }
+            }
+
+                if (name in my_hash) {
+                    //my_hash.INPUT();               
+                    my_hash[name]();
+                    }
+
+            }
+
+
+
+            let walk = function (node, handler) {
+                if (!node.hasChildNodes) return;
+
+                for (const child of node.children) {
+
+                    my_handler(child);
+                    walk(child, handler)
+
+                }
+            }
+
+            walk(document.body, my_handler);
+
+            const lorb = document.createElement('lorb');
+            lorb.innerHTML = `
+                <div class="container">
+                    Celebrate the Win!
+                </div>
+            `;
+
+            class LiteOrb extends HTMLElement {
+                constructor() {
+                    super();
+                    this.attachShadow({ mode: 'open' });
+                    this.shadowRoot.appendChild(lorb.content.cloneNode(true));
+                }
+            }
+            window.customElements.define('lite-orb', LiteOrb);
+
+        });
+
+
+    </script>
+
+
+</head>
+<body>
+    <!-- this is the document.body -->
+    <div id="my_div">
+        <p>
+            lorem11
+        </p>
+        <p>
+            lorem22
+        </p>
+    </div>
+    <div>
+        <input type="text" id="first_name" name="FName" placeholder="First Name">
+        <input type="text" id="last_name" name="LName" placeholder="Last Name">
+
+        <div>
+            <table style="background-color:lightsteelblue" cellspacing="3" bgcolor="black">
+                <tr style="background-color:gold" bgcolor="black">
+                    <th>
+                        First Name
+                    </th>
+                    <th style="background-color:gold">
+                        Last Name
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Mike
+                    </td>
+                    <td>
+                        Santacruz
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <label for="interns">
+            Your Favorite Intern
+        </label>
+        <select name="interns" id="interns">
+            <option value="choice">Please Choose</option>
+            <option value="mike0">Mike</option>
+            <option value="mike1">Mike SC</option>
+            <option value="mike2">Mike Santa</option>
+            <option value="mike3">Mike Cruz</option>
+            <option value="mike4">Mike Santacruz</option>
+        </select>
+    </div>
+
+
+
+</body>
+</html>
